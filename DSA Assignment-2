@@ -1,1 +1,1457 @@
+ Question 1. Define a class Person with two instance variables:
+name and age
+and two member methods:
+setData(): set the details of the person.
+displayData(): display the details of the person.
+Now, create two objects of class person and initialize one object value directly(by using the dot(.) operator name: “Rohan” and age: 20 ). Accept your name and age through the keyboard and set them to another object using the setData() method.
+Now display both the member variables using the displayData() method. Also, check who is younger.
+import java.util.*;
+
+class person{
+
+	   String name;
+
+	   int age;
+
+	   public void setData()
+
+	   {
+
+		   Scanner sc=new Scanner(System.in);
+
+		   System.out.print("Enter name : ");
+
+		   this.name=sc.nextLine();
+
+		   System.out.print("\nEnter Age: ");
+
+		   this.age=sc.nextInt();
+
+		   sc.close();
+
+	   }
+
+	   public void displayData()
+
+	   {
+
+		   System.out.println(this.name+"\t"+this.age);
+
+	   }
+
+}
+
+public class Q1 {
+
+
+
+	public static void main(String[] args) {
+
+		// TODO Auto-generated method stub
+
+        person ob1=new person();
+
+        person ob2=new person();
+
+        ob1.name="Rohan";
+
+        ob1.age=20;
+
+        ob2.setData();
+
+        System.out.println("Personal information- \nName:  \tAge:");
+
+        ob1.displayData();
+
+        ob2.displayData();
+
+        if(ob1.age<ob2.age)
+
+        	{System.out.println(ob1.name+" is younger than "+ob2.name);}
+
+        else
+
+        	{System.out.println(ob2.name+" is younger than "+ob1.name);  }
+
+	}
+
+
+
+}
+
+Output:
+
+Enter name: Surajit
+
+Enter Age: 21
+
+Personal information- 
+
+Name:   	Age:
+
+Rohan	        20
+
+Surajit	        21
+
+Rohan is younger than Surajit
+
+Question 2. Define a class called Complex with instance variables real, imag and instance methods
+void setData(),
+void display(),
+public Complex add(Complex, Complex)
+Write the main method in a separate class to implement the addition of two complex numbers with the given method signature as above.
+import java.util.*;
+
+class Complex {
+
+    int real;int imag;
+
+    void setData() {
+
+        Scanner sc=new Scanner(System.in);
+
+        System.out.print("Enter the real value: ");
+
+        this.real = sc.nextInt();
+
+        System.out.print("\nEnter the imaginary value: ");
+
+        this.imag = sc.nextInt();
+
+    }
+
+
+
+    void display() 
+
+    {
+
+        System.out.println(this.real+"+"+this.imag+"i");
+
+    }
+
+
+
+    public Complex add(Complex c1, Complex c2) {
+
+        Complex sum = new Complex();
+
+        sum.real = c1.real + c2.real;
+
+        sum.imag = c1.imag + c2.imag;
+
+        return sum;
+
+    }
+
+}
+
+public class Q2 {
+
+    public static void main(String[] args) {
+
+        Complex c1 = new Complex(); 
+
+        c1.setData();
+
+        Complex c2 = new Complex(); 
+
+        c2.setData();
+
+        System.out.print("First Number: ");
+
+        c1.display();
+
+        System.out.print("\nSecond Number: ");
+
+        c2.display();
+
+        System.out.print("Sum: ");
+
+        Complex sum=c1.add(c1, c2);
+
+        sum.display();
+
+    }
+
+}
+
+OUTPUT:
+
+Enter the real value: 5
+
+Enter the imaginary value: 3
+
+
+
+Enter the real value: 7
+
+Enter the imaginary value: 8
+
+First Number: 5+3i
+
+Second Number: 7+8i
+
+Sum: 12+11i
+
+Question 3.In a super market each product is having minimum details like prodId, price, quantity that is used during the biling process. Keeping this in mind prepare a class named as Product having the member variables
+ prodId, price, quantity
+a static variable totalPrice
+Initialize the value of product through parameterized constructor. It consists of a display() method to display the value of instance variables. A person went to market and purchase 5 different products. Using the above mentioned class, display the details of products that the person has purchased. Also, determine how much total amount the person will pay for the purchase of 5 products.
+import java.util.*;
+
+class Product {
+
+      int prodId,price,quantity;
+
+      static int totalPrice;
+
+      public Product(int pId, int P, int Q) {
+
+    	  this.prodId=pId;
+
+    	  this.price=P;
+
+    	  this.quantity=Q;
+
+    	  this.totalPrice +=this.price;
+
+      }
+
+     public void display() 
+
+     {
+
+        System.out.println(prodId+"\t    "+price+"\t   "+quantity);
+
+     }
+
+}
+
+public class Q3 {
+
+    public static void main(String[] args) {
+
+       Scanner sc=new Scanner(System.in);
+
+       System.out.print("Enter quantity of product : ");
+
+       int n=sc.nextInt();
+
+       Product P[]=new Product[n];
+
+       for(int i=0;i<n;i++) {
+
+    	   System.out.println("Enter Product ID, price and Quantity");
+
+    	   int pid=sc.nextInt();
+
+    	   int p=sc.nextInt();
+
+    	   int q=sc.nextInt();
+
+    	   P[i]=new Product(pid,p,q);
+
+       }
+
+       System.out.println("Product Id\tprice\tquantity ");
+
+       for(int i=0;i<n;i++) {
+
+    	   P[i].display();
+
+       }
+
+       System.out.println("Total Price: "+Product.totalPrice);
+
+       sc.close();
+
+    }
+
+}
+
+    
+
+OUTPUT:
+
+Enter quantity of product : 3
+
+Enter Product ID, price and Quantity
+
+10000
+
+199
+
+1
+
+Enter Product ID, price and Quantity
+
+10001
+
+299
+
+1
+
+Enter Product ID, price and Quantity
+
+10002
+
+399
+
+1
+
+Product Id	price	quantity 
+
+10000	         199	      1
+
+10001	         299	      1
+
+10002	         399	      1
+
+Total Price: 897
+
+Question 4. Define a class Deposit. The instance variable of the class Deposit are mentioned below.
+Instance Variable              Data Type
+ Principal                           Long
+ Time                                 Integer 
+ Rate                                  Double 
+TotalAmt                           Double
+
+Initialize the instance variables Principal, Time, rate through constructors. Constructors are overloaded with the following prototypes. 
+Constructor1: Deposit ( ) 
+Constructor2: Deposit (long, int, double) 
+Constructor3: Deposit (long, int) 
+Constructor4: Deposit (long, double) 
+Apart from constructor, the other instance methods are 
+(i) display ( ): to display the value of instance variables, 
+(ii) calcAmt( ): to calculate the total amount. 
+      totalAmt = Principal + (Principal x Rate x Time)/100;
+class Deposit{
+
+	  long principal;
+
+	  int time;
+
+	  double rate, totalAmt;
+
+	  public Deposit()
+
+	  {
+
+		  this.principal = 0;
+
+	      this.time = 0;
+
+	      this.rate = 0.0;
+
+	      this.totalAmt = 0.0;
+
+	  }
+
+	  public Deposit(long principal, int time, double rate) {
+
+	        this.principal = principal;
+
+	        this.time = time;
+
+	        this.rate = rate;
+
+	        calcAmt();
+
+	    }
+
+	    public Deposit(long principal, int time) {
+
+	        this.principal = principal;
+
+	        this.time = time;
+
+	        this.rate=7.1; //own input
+
+	        calcAmt();
+
+	    }
+
+	    public Deposit(long principal, double rate) {
+
+	        this.principal = principal;
+
+	        this.time=2; //own input
+
+	        this.rate = rate;
+
+	        calcAmt();
+
+	    }
+
+
+
+	    void display() {
+
+	        System.out.println("Principal: " +principal);
+
+	        System.out.println("Time: " + time + " years");
+
+	        System.out.println("Rate: " + rate + "%");
+
+	        System.out.println("Total Amount: " +totalAmt);
+
+	    }
+
+	    void calcAmt() {
+
+	        this.totalAmt = principal+(principal * rate * time)/100;
+
+	    }
+
+}
+
+public class Q4 {
+
+	public static void main(String[] args) {
+
+	   Deposit deposit1 = new Deposit(10000, 5,7.1);
+
+       Deposit deposit2 = new Deposit(20000, 2);
+
+       Deposit deposit3 = new Deposit(5000,5.3);
+
+
+
+       System.out.println("Deposit 1:");
+
+       deposit1.display();
+
+
+
+       System.out.println("\nDeposit 2:");
+
+       deposit2.display();
+
+
+
+       System.out.println("\nDeposit 3:");
+
+       deposit3.display();
+
+	}
+
+
+
+}
+
+OUTPUT:
+Deposit 1:
+Principal: 10000
+Time: 5 years
+Rate: 7.1%
+Total Amount: 13550.0
+
+Deposit 2:
+Principal: 20000
+Time: 2 years
+Rate: 7.1%
+Total Amount: 22840.0
+
+Deposit 3:
+Principal: 5000
+Time: 2 years
+Rate: 5.3%
+Total Amount: 5530.0
+
+Question 5. Define a base class Person with instance variable name, age. The instance variables are initialized through constructors. The prototype of constructor is as below. 
+                                                          Person (string, int) 
+Define a derived class Employee with instance variables Eid, salary. The instance variables are initialized through constructors. The prototype of the constructor is as below. 
+                                                Employee (string, int, int, double)
+Another instance method of Employee class is empDisplay() to display the information of employee details. 
+import java.util.*;
+
+class Person{
+
+	  String name;
+
+	  int age;
+
+	  public Person(String name,int age) {
+
+		  this.name=name;
+
+		  this.age=age;
+
+	  }
+
+}
+
+class Employee extends Person{
+
+	  int Eid;
+
+	  double salary;
+
+	  public Employee(String name,int age,int Eid,double salary) {
+
+		  super(name,age);
+
+		  this.Eid=Eid;
+
+		  this.salary=salary;
+
+	  }
+
+      public void empDisplay() {
+
+           System.out.println("Employee ID: " + this.Eid);
+
+           System.out.println("Name: " + this.name);
+
+           System.out.println("Age: " + this.age);
+
+           System.out.println("Salary: " + this.salary);
+
+      }
+
+}
+
+public class Q5 {
+
+
+
+	public static void main(String[] args) {
+
+		
+
+		Scanner sc=new Scanner(System.in);
+
+	    System.out.println("Enter Employee Id: ");
+
+		int eid=sc.nextInt();
+
+		System.out.println("Enter Name: ");
+
+		String Name=sc.next();
+
+		System.out.println("Enter Age: ");
+
+		int Age=sc.nextInt();
+
+		System.out.println("Enter Salary: ");
+
+		double Salary=sc.nextDouble();
+
+		Employee ob=new Employee(Name,Age,eid,Salary);
+
+		ob.empDisplay();
+
+	}
+
+}
+
+OUTPUT
+Enter Employee Id: 
+38
+Enter Name: 
+Surajit
+Enter Age: 
+20
+Enter Salary: 
+10000
+Employee ID: 38
+Name: Surajit
+Age: 20
+Salary: 10000.0
+
+
+Question 6. Create an abstract class Marks with three instance variables (markICP, markDSA and percentage) and an abstract method getPercentage(). Create two classes: CSE with instance variable algoDesign, and NonCSE with instance variable enggMechanics. Both classes inherit the abstract class Marks and override the abstract method getPercentage(). The constructor of class CSE takes the marks in three subject(markICP, markDSA, and algoDesign) as its parameters, and the constructor of classNonCSEtakesthe marks in three subjects (markICP, markDSA, and enggMechanics)as its parameters. Create an object for each of the two classes and print the percentage of marks for both students.
+abstract class Marks{
+
+	  int markICP,markDSA;
+
+	  double percentage;
+
+	  public Marks(int ICP,int DSA)
+
+	  {
+
+		  this.markICP=ICP;
+
+		  this.markDSA=DSA;
+
+	  }
+
+	  abstract void getPercentage();
+
+}
+
+class CSE extends Marks{
+
+	int algoDesign;
+
+	CSE(int ICP,int DSA,int algoDesign)
+
+	{
+
+		super(ICP,DSA);
+
+		this.algoDesign=algoDesign;
+
+	}
+
+		public void getPercentage()
+
+		{
+
+		percentage=(markICP+markDSA+algoDesign)/3.0;
+
+		System.out.println("CSE student percentage: "+percentage);
+
+		}
+
+	}
+
+class NonCSE extends Marks
+
+{
+
+	int enggMechanics;
+
+	public NonCSE(int ICP,int DSA,int enggMechanics)
+
+	{
+
+		super(ICP,DSA);
+
+		this.enggMechanics=enggMechanics;
+
+   }
+
+	public void getPercentage()
+
+	{
+
+	percentage=(markICP+markDSA+enggMechanics)/3.0;
+
+	System.out.println("Non CSE student percentage: "+percentage);
+
+	}
+
+}
+
+public class Q6 {
+
+
+
+	public static void main(String[] args) {
+
+        CSE S1=new CSE(84,65,70); S1.getPercentage();
+
+        NonCSE S2=new NonCSE(87,56,78); S2.getPercentage();
+
+        
+
+	}
+
+
+
+}
+
+
+OUTPUT:
+CSE student percentage: 73.0
+Non CSE student percentage: 73.66666666666667
+
+Question 7. Define an interface DetailInfo to declare methods display( ) & count(). Another class Person contains a static data member maxcount, instance member name & method display( ) to display name of a person, count the no. of characters present in the name of the person.
+interface DetailInfo{
+
+	      void display();
+
+	      void count();
+
+}
+
+class Person3 implements DetailInfo
+
+{
+
+	String name;
+
+	static int maxCount;
+
+	public Person3(String name)
+
+	{
+
+		this.name=name;
+
+	}
+
+	public void count()
+
+	{
+
+		maxCount=this.name.length();
+
+	}
+
+	public void display()
+
+	{
+
+		System.out.println("Name: "+name+"\nNumber of characters present in the name= "+maxCount);
+
+	}
+
+}
+
+public class Q7 {
+
+
+
+	public static void main(String[] args) {
+
+        Person3 ob=new Person3("Surajit");
+
+        ob.count();
+
+        ob.display();
+
+	}
+
+
+
+}
+
+OUTPUT:
+Name: Surajit
+Number of characters present in the name= 7
+
+Question 8. Design a package that contains two classes Student & Test. The Student class has data members as name, roll and instance methods inputDetails() & showDetails(). Similarly, the Test class has data members as mark1, mark2 and instance methods inputDetails(), showDetails(), Student is extended by Test. Another package carry interface Sports with 2 attributes score1 and score2. Find the grand total mark & score in another class.
+
+Solution:
+Student.java
+
+package P1;//Create a package P1 for Student and Test class
+
+
+
+class Student {
+
+    private String name;
+
+        int roll;
+
+
+
+    public void inputDetails(String Name, int Roll) 
+
+    {
+
+        this.name = Name;
+
+        this.roll = Roll;
+
+    }
+
+
+
+   public void showDetails() 
+
+    {
+
+        System.out.println("Student Name: " + name);
+
+        System.out.println("Roll Number: " + roll);
+
+    }
+
+}
+
+Test.java
+
+package P1;//Create a package P1 for Student and Test class
+
+
+
+public class Test extends Student{
+
+	 public int mark1;
+
+     public int mark2;
+
+
+
+    public void inputDetails(int m1, int m2) {
+
+        this.mark1 = m1;
+
+        this.mark2 = m2;
+
+    }
+
+
+
+    public void showDetails() {
+
+        super.showDetails();
+
+        System.out.println("Test Marks: \nMark 1= " + mark1 + ", Mark 2= " + mark2);
+
+    }
+
+}
+
+Sports.java
+
+package P2;//Create a package P2 for Sports
+
+
+
+public interface Sports {
+
+    int score1 = 90; // User input value
+
+    int score2 = 100; // User input value
+
+}
+
+Q8.java
+
+import P1.*;
+
+import P2.*;
+
+//Separate class to Find grand total mark & score
+
+public class Q8 extends Test implements Sports{
+
+
+
+	public static void main(String[] args) {
+
+		// Create a Test object
+
+        Test ob= new Test();
+
+        ob.inputDetails("Surajit Sahoo", 38); // Set student details
+
+        ob.inputDetails(90, 95); // Set test marks
+
+        ob.showDetails(); // Display student details and test marks
+
+       // Calculate total marks
+
+        int Totalmarks=ob.mark1+ob.mark2;
+
+        System.out.println("Total Marks: " +Totalmarks);
+
+
+
+        // Calculate total scores (from Sports interface)
+
+        int Totalscores = score1 + score2;
+
+        System.out.println("Total Scores: " +Totalscores);
+
+	}
+
+
+
+}
+
+Output:
+Student Name: Surajit Sahoo
+Roll Number: 38
+Test Marks: 
+Mark 1= 90, Mark 2= 95
+Total Marks: 185
+Total Scores: 190
+
+HOME ASSIGNMENT
+Question 1. A sales person is paid commission based on the sales he makes as shown by the following table:
+ SALES                           COMMISSION
+ Under Rs. 100                   2% of SALES
+ Rs 500 and under Rs 5000        5% of Sales
+ Rs 5000 and above               8% of sales
+ Write a class, Commission, which has:
+ An instance variable, sales; an appropriate constructor; and a method,getCommission() that returns the commission.
+ Now write a Demo class in Java to test the Commission class by reading a sale from the user, using it to create a Commission object after validating that the value is not negative. 
+Finally, call the getcommission() method to get and print the commission.
+If the sales are negative, your Demo class should print the message “Invalid Input”.
+import java.util.*;
+
+class Commission{
+
+	  double sales;
+
+	  public Commission(double sales) {
+
+		  this.sales=sales;
+
+	  }
+
+	  public double getCommission() 
+
+	  {
+
+	        if (sales <= 100) 
+
+	            return 0.02 * sales;
+
+	        else if (sales >= 100 && sales <5000) 
+
+	            return 0.05 * sales;
+
+	        else 
+
+	            return 0.08 * sales;
+
+	   }
+
+}
+
+public class Demo_HAQ1 {
+
+
+
+	public static void main(String[] args) {
+
+		Scanner sc=new Scanner(System.in);
+
+		System.out.print("Enter your sales amount: ");
+
+		double Sales =sc.nextDouble();
+
+		Commission ob= new Commission(Sales);
+
+		double comAmount = ob.getCommission();
+
+		if(comAmount<0)
+
+			System.out.println("Invalid input");
+
+		else
+
+        System.out.println("Commission amount: Rs " + comAmount);
+
+	}
+
+}
+
+
+
+OUTPUT:
+
+Enter your sales amount: 550
+
+Commission amount: Rs 27.5
+
+Question 2. Define a class called Book with instance variables BName, BEdition,BPrice. Use constructor to initialize the instance variables of the class.Another instance method display ( ) to display the book information. A person purchase 5 different books. Display the book details which has the maximum price.
+import java.util.*;
+
+class Book{
+
+	  String Bname;
+
+	  String BEdition;
+
+	  int BPrice;
+
+	  public Book(String BName, String BEdition, int BPrice)
+
+
+
+      {
+
+             this.Bname = BName;
+
+             this.BEdition = BEdition;
+
+             this.BPrice = BPrice;
+
+
+
+      }
+
+	  public void display()
+
+      {
+
+
+
+          System.out.println(this.Bname+"\t   "+this.BEdition+"\t   "+this.BPrice);
+
+      }
+
+}
+
+	  public class HAQ2
+
+	  {
+
+	       public static void main(String[] args){
+
+	            Scanner sc = new Scanner(System.in);
+
+	            System.out.println("How many book you want to buy: ");
+
+	            int n = sc.nextInt();
+
+	            Book b[] = new Book[n];
+
+	            for(int i = 0;i<n;i++)
+
+	            {
+
+	                sc.nextLine();
+
+	                System.out.println("Enter the book name, edition, and price ");
+
+	                String name = sc.nextLine();
+
+	                String edition = sc.nextLine();
+
+	                int price = sc.nextInt();
+
+	                b[i] = new Book(name, edition, price);
+
+
+
+	             }
+
+
+
+	                 System.out.println("*******Book information*******");
+
+	                 System.out.println("Book name \tedition \tprice ");
+
+	                 for(int i = 0;i<n;i++)
+
+	                 {
+
+
+
+	                    b[i].display();
+
+
+
+	                  }
+
+	                   int index = 0;
+
+	                 for(int i = 1;i<n;i++)
+
+	                {
+
+	                   if(b[index].BPrice<b[i].BPrice)
+
+	                   index = i;
+
+	                }
+
+	               System.out.println("Book details with highest price ");
+
+	                b[index].display();
+
+	         }
+
+	  }
+
+OUTPUT:
+
+How many book you want to buy: 
+
+2
+
+Enter the book name, edition, and price 
+
+DSA
+
+2020
+
+799
+
+Enter the book name, edition, and price 
+
+IGT
+
+2023
+
+1199
+
+*******Book information*******
+
+Book name 	 edition 	 price 
+
+DSA	         2020	         799
+
+IGT	         2023	         1199
+
+Book details with highest price 
+
+IGT	2023	1199
+
+Question  3. Create a class Bank with two instance variables: bankName, deposit tAamount and a class variable totalAamount. Defined three member methods: setBankName() to set the bank name, setAmount() to set the deposit amount, and showData() for displaying the bank name and deposit amount. A person visited 5 different banks and deposit money. Create 5 array object of class Bank set the bank name and deposit amount (the minimum deposit amount is 1000) using member methods setBankName() and setAmount(). Call the showData() method to display the information with totalAmount deposited by the person. Also, design a method that displays the bank name where the person deposits the minimum amount.
+ import java.util.*;
+
+ class Bank
+
+ {
+
+       String bankName;
+
+       int depositAmount;
+
+       static int totalAmount;
+
+       public Bank()
+
+       {
+
+          this.bankName = "";
+
+          this.depositAmount = 0;
+
+       }
+
+       public void setBankName(String bankName)
+
+       {
+
+          this.bankName = bankName;
+
+       }
+
+       public void setAmount(int depositAmount)
+
+       {
+
+          if(depositAmount>=1000)
+
+            {
+
+               this.depositAmount = depositAmount;
+
+            }
+
+           else
+
+            {
+
+	           this.depositAmount = 0;
+
+               System.out.println("Balance not credited due to low balance");
+
+            }
+
+               totalAmount += this.depositAmount;
+
+       }
+
+      public void showData()
+
+      {
+
+           System.out.println(this.bankName+"      \t"+this.depositAmount);
+
+      }
+
+      public int bankDetails(Bank[] b)
+
+      {
+
+          int index = 0;
+
+          for(int i = 1;i<b.length;i++)
+
+          {
+
+               if(b[index].depositAmount>b[i].depositAmount)
+
+               index = i;
+
+          }
+
+          return index;
+
+       }
+
+ }
+
+ public class HAQ3
+
+ {
+
+       public static void main(String[] args)
+
+       {
+
+         Scanner sc = new Scanner(System.in);
+
+         System.out.println("How many account you want to create: ");
+
+         int n = sc.nextInt();
+
+         Bank b[] = new Bank[n];
+
+         for(int i = 0;i<n;i++)
+
+        {
+
+          sc.nextLine();
+
+          System.out.println("Enter the bank name, and deposit amount(minimum amount 1000)");
+
+          String name = sc.nextLine();
+
+          int amount = sc.nextInt();
+
+          b[i] = new Bank();
+
+          b[i].setBankName(name);
+
+          b[i].setAmount(amount);
+
+         }
+
+          System.out.println("*******Book information*******");
+
+          System.out.println("Bank name\tAmount ");
+
+          for(int i = 0;i<n;i++)
+
+         {
+
+           b[i].showData();
+
+         }
+
+          System.out.println("TotalAmount deposit by the person is "+Bank.totalAmount);
+
+          int index = b[0].bankDetails(b);
+
+          System.out.println("Bank details with minimum deposit amount ");
+
+          b[index].showData();
+
+         }
+
+ }
+
+OUTPUT:
+How many account you want to create: 
+1
+Enter the bank name, and deposit amount(minimum amount 1000)
+SBI
+10000
+*******Book information*******
+Bank name	Amount 
+SBI      	10000
+TotalAmount deposit by the person is 10000
+Bank details with minimum deposit amount 
+SBI      	10000
+
+Question 4. Write a Java code that would represent Distance object (meters, centimetres) using classes. The class definition include a parameterizedconstructor, void display ( ) to display the instance variables, void sum(Distance, Distance) to add two distances. Now write a main functionthat creates a couple of Distance objects and demonstrates the addition of two distances
+class Distance
+
+{
+
+     double meters, centimeters;
+
+     public Distance()
+
+     {
+
+     this.meters = 0;
+
+     this.centimeters = 0;
+
+     }
+
+     public Distance(double meters, double centimeters)
+
+     {
+
+       this.meters = meters;
+
+       this.centimeters = centimeters;
+
+     }
+
+     public Distance add(Distance d1, Distance d2)
+
+     {
+
+       Distance d3 = new Distance();
+
+       d3.meters = d1.meters + d2.meters;
+
+       d3.centimeters = d1.centimeters + d2.centimeters;
+
+       if(d3.centimeters>=100)
+
+       {
+
+          d3.meters += (int)(d3.centimeters/100);
+
+          d3.centimeters = d3.centimeters%100;
+
+       }
+
+        return d3;
+
+     }
+
+         public void display()
+
+          {
+
+            System.out.println(this.meters+"m and "+this.centimeters+"cm");
+
+          }
+
+ }
+
+ public class HAQ4
+
+ {
+
+      public static void main(String[] args) {
+
+       Distance d1 = new Distance(5,40);
+
+       Distance d2 = new Distance(7,70);
+
+       Distance d3 = new Distance();
+
+       d3 = d3.add(d1,d2);
+
+       d1.display();
+
+       d2.display();
+
+       System.out.println("Sum of the distances: ");
+
+       d3.display();
+
+       }
+
+ }
+
+OUTPUT:
+5.0m and 40.0cm
+7.0m and 70.0cm
+Sum of the distances: 
+13.0m and 10.0cm
+
+Question  5. A point in the x-y plane is represented by its x-coordinate and y-coordinate. Design a class, PointType in Java, that can store and process a point in the x-y plane. You should then perform operations on the point, such as showing the point, setting the coordinates of the point, printing the coordinates of the point, returning the x-coordinate, and returning the y- y-coordinate. Every circle has a centre and a radius. Given the radius, we can determine the circle’s area and circumference. Given the centre, we can determine its position in the x-y plane. The centre of a circle is a point in the x-y plane. Design a class, CircleTypethat can store the radius and centre of the circle. Because the center is a point in the x-y plane and you designed the class to capture the properties of a point from PointType class. You must derive the class CircleType from the class PointType. You should be able to perform the usual operations on a circle, such as setting the radius, printing the radius, calculating and printing the area and circumference, and carrying out the usual operations on the center.
+import java.util.*; 
+
+class PointType{
+
+      int xCoordinate,yCoordinate;
+
+      public PointType(int x, int y){
+
+      this.xCoordinate = x;
+
+      this.yCoordinate = y;
+
+      }
+
+      public double returnXcoordinate()
+
+      {
+
+       return this.xCoordinate;
+
+      }
+
+      public double returnYcoordinate()
+
+      {
+
+      return this.yCoordinate;
+
+      }
+
+ }
+
+ class CircleType extends PointType
+
+      {
+
+       double radius, area, perimeter ;
+
+       public CircleType(int x, int y, double r)
+
+       {
+
+         super(x,y);
+
+         this.radius = r;
+
+       }
+
+      public void operation()
+
+       {
+
+          this.area = Math.PI*Math.pow(this.radius, 2);
+
+          this.perimeter = 2*Math.PI*this.radius;
+
+       }
+
+      public void display()
+
+       {
+
+         System.out.println("Circle center x = "+returnXcoordinate()+", and y ="+returnYcoordinate());
+
+         System.out.println("Circle radius: "+this.radius);
+
+         System.out.println("Area of Circle: "+this.area);
+
+        }
+
+ }
+
+ public class HAQ5
+
+ {
+
+        public static void main(String[] args){
+
+        	Scanner sc=new Scanner(System.in);
+
+        	System.out.print("Enter x-coordinate: ");
+
+        	int x=sc.nextInt();
+
+        	System.out.print("Enter y-coordinate: ");
+
+        	int y=sc.nextInt();
+
+        	System.out.print("Enter radius of the circle:");
+
+        	double r=sc.nextDouble();
+
+        	
+
+        	CircleType CT = new CircleType(x, y, r);
+
+            CT.operation();
+
+            CT.display();
+
+        }
+
+ }
+
+OUTPUT:
+Enter x-coordinate: 5
+Enter y-coordinate: 10
+Enter radius of the circle:5.5
+Circle center x = 5.0, and y =10.0
+Circle radius: 5.5
+Area of Circle: 95.03317777109125
 
