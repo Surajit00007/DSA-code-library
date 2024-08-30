@@ -1,0 +1,1185 @@
+Question 1: Write a Java program to read your lucky number from the keyboard. Treat –ve no. as NumberFormatException. Write appropriate Exceptional handler.
+Solution:
+
+import java.util.*;;
+
+public class Q1 {
+
+	int x;
+
+	public void input(int x)
+
+	{
+
+		this.x=x;
+
+		if(x<0) 
+
+			throw new NumberFormatException("You entered negative number ");
+
+		else
+
+			System.out.println("Your lucky Number: "+x);
+
+	}
+
+	public static void main(String[] args) {
+
+		Scanner sc=new Scanner(System.in);
+
+		int n=0;
+
+		System.out.print("Enter your lucky number: ");
+
+		n=sc.nextInt();
+
+		Q1 ob=new Q1();
+
+		try 
+
+		{	
+
+			ob.input(n);
+
+		}
+
+		catch(Exception e)
+
+		{
+
+			System.out.println("Error "+e);
+
+		}
+
+	}
+
+}
+
+Output:
+
+Enter your lucky number: -5
+
+
+Error java.lang.NumberFormatException: You entered negative number 
+
+
+
+Question 2:Assign your favorite colors in an array. Identify 2 exceptions that may be generated & write exceptional handler in Java.
+Solution:	
+import java.util.*;
+
+public class Q2 {
+
+	   public void insert(String colour[])throws ArrayIndexOutOfBoundsException
+
+	   {
+
+		   colour[colour.length]="Black";
+
+	   }
+
+       public void display(String colour[])
+
+       {
+
+    	   System.out.println("Selected colours are:");
+
+    	   for(int i=0;i<colour.length;i++)
+
+           {
+
+           	System.out.print(colour[i]+", ");
+
+           }
+
+       }
+
+       public void StringToInt(String colour[])
+
+       {
+
+    	   throw new NumberFormatException("Cannot convert String to int ");
+
+       }
+
+	public static void main(String[] args) {
+
+        String colour[]={"Red","Blue","Yellow","Green"};
+
+        Q2 ob=new Q2();
+
+        ob.display(colour);
+
+        try
+
+        {
+
+            ob.insert(colour);
+
+        }
+
+        catch(Exception e)
+
+        {
+
+        	System.out.println("\nError "+e);
+
+        }
+
+        try
+
+        {
+
+        	ob.StringToInt(colour);	
+
+        }
+
+        catch(Exception e)
+
+        {
+
+        	System.out.println("\nError "+e);
+
+        }
+
+    }
+
+}
+
+Output:
+
+Selected colours are:
+
+Red, Blue, Yellow, Green, 
+
+Error java.lang.ArrayIndexOutOfBoundsException: Index 4 out of bounds for length 4
+
+
+Error java.lang.NumberFormatException: Cannot convert String to int 
+
+
+Question 3: Create a class Student & enter mark, name of the student. If mark is more than 100, create exception MarksOutOfBoundException & throw it using Java.
+import java.util.Scanner;
+
+class Student{
+
+	  int marks; String name;
+
+	  public Student(int marks,String name)throws Exception
+
+	  {
+
+		  this.marks=marks;
+
+		  this.name=name;
+
+		  if(marks<0 || marks>100)
+
+		  {
+
+			  throw new MarksOutOfBoundsException("Invalid Marks");
+
+		  }
+
+		  else{this.marks=marks;}
+
+	  }
+
+	  public void display()
+
+	  {
+
+		  System.out.println("Your name: "+this.name+"\tYour marks: "+this.marks);
+
+	  }
+
+}
+
+	  class MarksOutOfBoundsException extends Exception
+
+	  {
+
+		  public MarksOutOfBoundsException(String str)
+
+		  {
+
+			  super(str);
+
+		  }
+
+      }
+
+public class Q3 {
+
+	public static void main(String[] args) {
+
+		Scanner sc=new Scanner(System.in);
+
+		System.out.print("Your name: ");
+
+		String s=sc.next();
+
+		System.out.print("Enter marks: ");
+
+		int m=sc.nextInt();
+
+		try
+
+		{
+
+			Student S=new Student(m,s);
+
+			S.display();
+
+		}
+
+		catch(Exception e)
+
+		{
+
+			System.out.println("Error "+e);
+
+		}
+
+	}
+
+}
+
+Output:
+
+Your name: Surajit
+
+Enter marks: 110
+
+
+Error MarksOutOfBoundsException: Invalid Marks
+
+Question 4. Write a simple main class in Java that contains an experiment that uses the generic Box<T> class to build boxes with different types and that verifies that this class works as advertised. Your experiment should include the following:
+Create a boxed String object and two variables that refer to that box. Change the contents of one and determine the effect on the other.
+Create a boxed Integer object and two variables that refer to that box. Change the contents of one and determine the effect on the other.
+Create a boxed Object object and two variables that refer to that box. Determine what happens if you put a string in the box. Determine what happens if you put an integer in the box.
+class Box<T> {
+
+    public T content;
+
+
+
+    public Box(T content) {
+
+        this.content = content;
+
+    }
+
+
+
+    public T getContent() {
+
+        return content;
+
+    }
+
+
+
+    public void setContent(T content) {
+
+        this.content = content;
+
+    }
+
+}
+
+
+
+public class Q5 {
+
+    public static void main(String[] args) {
+
+        // Create a boxed String object
+
+        Box<String> stringBox = new Box<>("Hello, World!");
+
+
+
+        // Create two variables that refer to the same string box
+
+        Box<String> variable1 = stringBox;
+
+        Box<String> variable2 = stringBox;
+
+
+
+        // Change the contents of one variable
+
+        variable1.setContent("Modified content");
+
+
+
+        // Verify the effect on the other variable
+
+        System.out.println("Variable 2 content: " + variable2.getContent());
+
+
+
+        // Create a boxed Integer object
+
+        Box<Integer> intBox = new Box<>(42);
+
+
+
+        // Create two variables that refer to the same integer box
+
+        Box<Integer> intVariable1 = intBox;
+
+        Box<Integer> intVariable2 = intBox;
+
+
+
+        // Change the contents of one variable
+
+        intVariable1.setContent(99);
+
+
+
+        // Verify the effect on the other variable
+
+        System.out.println("Int variable 2 content: " + intVariable2.getContent());
+
+
+
+        // Create a boxed Object object
+
+        Box<Object> objectBox = new Box<>(null);
+
+
+
+        // Put a string in the object box
+
+        objectBox.setContent("This is a string");
+
+
+
+        // Verify the content
+
+        System.out.println("Object box content (String): " + objectBox.getContent());
+
+
+
+        // Put an integer in the object box
+
+        objectBox.setContent(123);
+
+
+
+        // Verify the content
+
+        System.out.println("Object box content (Integer): " + objectBox.getContent());
+
+    }
+
+}
+
+Output:
+Variable 2 content: Modified content
+Int variable 2 content: 99
+Object box content (String): This is a string
+Object box content (Integer): 123
+
+Question 5: Write a java program to print an array of different type using a single Generic method. The signature of printArray method is given below. 
+    public static < E > void printArray( E[] inputArray)
+public class Q5 {
+
+	public static < E > void printArray( E[] inputArray)
+
+	{
+
+		for(int i=0;i<inputArray.length ;i++) {
+
+			System.out.print(inputArray[i]+" ");
+
+		}
+
+		System.out.println();
+
+	}
+
+	public static void main(String[] args) {
+
+       Integer arr[]= {1,2,3,4,5};
+
+       printArray(arr);
+
+       String s[]= {"A","B","C","D","E"};
+
+       printArray(s);
+
+       
+
+	}
+
+ }
+
+Output:
+1 2 3 4 5 
+A B C D E 
+
+Question 6:Write a Java method using Generics to count the occurrence of an element in an array of any type. The signature of count method is given below. 
+       public static int count(T[] array, T item)
+Solution:
+public class Q6 {
+
+	public static void main(String[] args) {
+
+      Integer arr[]= {1,2,3,4,1,1,1};
+
+      Integer i=1; 
+
+      System.out.println("Occurrence of "+i+" is "+count(arr,i)+" times");
+
+	}
+
+	public static <T>int count(T[] array, T item)
+
+	{
+
+		int c=0;
+
+		System.out.print("[");
+
+		for(int i=0;i<array.length;i++)
+
+		{
+
+			if(array[i]==item)
+
+			{
+
+				c++;
+
+			}
+
+			System.out.print(array[i]+" ");
+
+			}
+
+		System.out.println("]");
+
+		return c;
+
+	}
+
+}
+
+Output:
+
+[1 2 3 4 1 1 1 ]
+
+
+Occurrence of 1 is 4 times.
+
+Question 7.Write a recursive method in Java that computes the factorial of a given integer.
+import java.util.*;
+
+public class Q7 {
+
+	public static int fact(int n)
+
+	{
+
+		if(n==1 || n==0)
+
+		    return 1;
+
+		else
+
+			return n*fact(n-1);
+
+	}
+
+	public static void main(String[] args) {
+
+     Scanner sc=new Scanner(System.in);
+
+     System.out.println("Enter a no: ");
+
+     int n=sc.nextInt();
+
+     System.out.println("Factorial= "+fact(n));
+
+      
+
+	}
+
+
+
+}
+
+Output:
+Enter a no: 5
+Factorial= 120
+
+Question 8.Write a recursive method in Java which, given real value x and a positive integer n, returns the value of x^n
+import java.util.*;
+
+public class Q8 {
+
+	public static int pow(int base ,int power)
+
+	{
+
+		if(base==0)
+
+			return 0;
+
+		else if(power==0)
+
+			return 1;
+
+		else
+
+			return base*pow(base,power-1);
+
+	}
+
+
+
+	public static void main(String[] args) {
+
+		Scanner sc=new Scanner(System.in);
+
+		System.out.println("Enter the base: ");
+
+		int base=sc.nextInt();
+
+		System.out.println("Enter the power: ");
+
+		int power=sc.nextInt();
+
+	   System.out.println(base+" to the power of "+power+" is "+pow(base,power));
+
+	}
+
+
+
+}
+
+Output:
+Enter the base: 
+2
+Enter the power: 
+12
+2 to the power of 12 is 4096
+
+Question 9.Write a recursive method in Java which, given an integer n, print it with its digits reversed.
+ For example , given 4735, it prints 5374.
+import java.util.*;
+
+public class Q9 {
+
+	public static String reverse(int n)
+
+	{
+
+		if(n==0)
+
+		 return "";
+
+		else
+
+			return n%10+reverse(n/10);
+
+	
+
+	}
+
+	public static void main(String[] args) {
+
+		Scanner sc=new Scanner(System.in);
+
+		System.out.println("Enter a no. ");
+
+		int n=sc.nextInt();
+
+		System.out.println("Reverse "+reverse(n));
+
+		
+
+	}
+
+}
+
+Alternative Solution:
+import java.util.*;
+
+public class Q9 {
+
+	public static int reverse(int n,int sum)
+
+	{
+
+		if(n==0)
+
+			return sum;
+
+		else
+
+		{
+
+			sum=sum*10+n%10;
+
+			return reverse(n/10,sum);
+
+		}
+
+	
+
+	}
+
+	public static void main(String[] args) {
+
+		Scanner sc=new Scanner(System.in);
+
+		System.out.println("Enter a no. ");
+
+		int n=sc.nextInt();
+
+		System.out.println("Reverse "+reverse(n,0));
+
+		
+
+	}
+
+}
+
+Output:
+Enter a no. 
+2024
+Reverse 4202
+
+Question 10. The sequence of numbers 1, 1, 2, 3, 5, 8, 13 etc are called Fibonacci numbers,each is the sum of the preceding two. Write a recursive method in Java which, given n, returns the nth Fibonacci number.
+import java.util.*;
+
+public class Q10 {
+
+	public static int fibonacci(int n)
+
+	{
+
+		if(n==0 || n==1)
+
+			return n;
+
+		else
+
+			return fibonacci(n-1)+fibonacci(n-2);
+
+	}
+
+
+
+	public static void main(String[] args) {
+
+		Scanner sc=new Scanner(System.in);
+
+		System.out.println("Enter no. of terms ");
+
+		int n=sc.nextInt();
+
+		for(int i=0;i<n;i++) {
+
+		System.out.print(fibonacci(i)+" ");
+
+		}
+
+	}
+
+
+
+}
+
+ALTERNATE SOLUTION:
+import java.util.*;
+
+public class fibonacci {
+
+public static void printfibonacci(int a,int b,int n) {// a,b,c...n [c=a+b](logic)
+
+	if(n==0 || n==1)
+
+	{
+
+		return ;
+
+	}
+
+	int c=a+b;
+
+	System.out.print(c+" ");
+
+	printfibonacci(b,c,n-1);
+
+  }	
+
+	public static void main(String[] args) {
+
+		// TODO Auto-generated method stub
+
+        Scanner sc=new Scanner(System.in);
+
+        System.out.println("Enter the number of terms: ");
+
+        int n=sc.nextInt();
+
+        int a=0,b=1;
+
+        System.out.print(a+" "+b+" ");
+
+        printfibonacci(a,b,n-2); //We have already printed 2terms 0,1
+
+                                 // so we are writing n-2
+
+	}
+
+}	
+
+Output:
+Enter no. of terms 
+10
+0 1 1 2 3 5 8 13 21 34 
+
+HOME ASSIGNMENT SOLUTIONS :
+Question 1. Write a recursive method in Java to return the greatest common divisor(gcd) of two integers m and n, given that in general, gcd(m,n)=gcd(n, m mod n).
+
+import java.util.*;
+
+ class HA_Q1{
+
+
+
+      public static int gcd(int m, int n)
+
+ {
+
+    	  if(n==0)
+
+          return m;
+
+          else
+
+          return gcd(n,m%n);
+
+
+
+  }
+
+ public static void main(String[] args)
+
+
+
+    {
+
+      Scanner sc = new Scanner(System.in);
+
+      System.out.println("Enter the first number: ");
+
+      int m = sc.nextInt();
+
+      System.out.println("Enter the second number: ");
+
+      int n = sc.nextInt();
+
+      System.out.print("GCD between "+m+" and "+n+" is "+gcd(m,n));
+
+     }
+
+ 
+
+ }
+
+Output:
+Enter the first number: 
+12
+Enter the second number: 
+136
+GCD between 12 and 136 is 4
+
+Question 2. Write a recursive method in Java to search an element of an array using binary search.
+ import java.util.*;
+
+ class HA_Q2
+
+ {
+
+      public static void BinarySearch(int arr[], int item, int start, int end)
+
+      {
+
+           int mid = (start+end)/2;
+
+           if(start>end)
+
+        	   System.out.println("Search element not found");
+
+           else if(arr[mid] == item)
+
+        	   System.out.println("Search element found");
+
+           else if(arr[mid]>item)
+
+               BinarySearch(arr, item,start, mid-1);
+
+           else
+
+        	   BinarySearch(arr, item, mid+1,end);
+
+       }
+
+ public static void main(String[] args)
+
+ {
+
+     Scanner sc=new Scanner(System.in);
+
+     System.out.println("Enter no. of. elements you want to enter in the array ");
+
+     int n=sc.nextInt();
+
+	 int arr[]=new int[n];
+
+	 for(int i=0;i<n;i++)
+
+	 {
+
+		 System.out.print("Enter "+(i+1)+" element: \n");
+
+		 arr[i]=sc.nextInt();
+
+	 }
+
+	 System.out.println("Enter item you want to search: ");
+
+	 int item=sc.nextInt();
+
+          BinarySearch(arr, item, 0,arr.length-1);
+
+     }
+
+ }
+
+Output:
+Enter no. of. elements you want to enter in the array 
+5
+Enter 1 element: 
+100
+Enter 2 element: 
+150
+Enter 3 element: 
+200
+Enter 4 element: 
+250
+Enter 5 element: 
+300
+Enter item you want to search: 
+200
+Search element found
+
+Question  3. Write a recursive method in Java to find the binary equivalent of a positive decimal integer.
+import java.util.*;
+
+public class HA_Q3 {
+
+    public static int findBinary(int d) {
+
+        if (d == 0)
+
+            return 0;
+
+        else
+
+            return (d % 2) + 10 * findBinary(d/2);
+
+    }
+
+
+
+    public static void main(String[] args) {
+
+        Scanner sc= new Scanner(System.in);
+
+        System.out.print("Enter a positive decimal number: ");
+
+        int n= sc.nextInt();
+
+        sc.close();
+
+        System.out.println("Binary equivalent: " + findBinary(n));
+
+    }
+
+}
+
+Output:
+Enter a positive decimal number: 13
+Binary equivalent: 1101
+
+Question  4.Write a recursive method in Java to find the product of 2 numbers.
+import java.util.*;
+
+public class HAQ4 {
+
+	public static int product(int m,int n)
+
+	{
+
+		if (m < n)
+
+            return product(n, m); //Swap the numbers if m < n
+
+        else if (n != 0)
+
+            return m + product(m, n - 1); // Recursively calculate n times sum of m
+
+        else
+
+            return 0;
+
+	}
+
+	public static void main(String[] args) {
+
+		 Scanner sc = new Scanner(System.in);
+
+		 System.out.println("Enter the first number: ");
+
+		 int m = sc.nextInt();
+
+		 System.out.println("Enter the second number: ");
+
+		 int n = sc.nextInt();
+
+		 System.out.print("Product of "+m+"x"+n+" is :"+product(m,n));
+
+	}
+
+}
+
+Output:
+Enter the first number: 
+
+11
+
+Enter the second number: 
+
+9
+
+Product of 11x9 is :99
+
+Question 5. Write a recursive Java method that takes a character string s and outputs its reverse. For example, the reverse of 'pots&pans' would be 'snap&stop'.
+import java.util.*;
+
+public class HAQ5 {
+
+	 public static String reverse(String S, int index)
+
+	 {
+
+	 if(index<S.length())
+
+	 return reverse(S, index+1)+S.charAt(index);
+
+	 else
+
+	 return " ";
+
+	 }
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+
+		 System.out.println("Enter a string: ");
+
+		 String S = sc.nextLine();
+
+		 System.out.println("reverse is: "+reverse(S,0));
+
+
+
+	}
+
+}
+
+Output:
+Enter a string: 
+
+pots&pans
+
+reverse is:  snap&stop
+
+Question 6. Write a recursive Java method that determines if a string s is a palindrome, that is, it is equal to its reverse. Examples of palindromes include 'racecar' 'gohangasalamiimalasagnahog'
+import java.util.*;
+
+public class HAQ6 {
+
+	 public static String reverse(String S, int index)
+
+	 {
+
+	 if(index<S.length())
+
+		 return reverse(S, index+1)+S.charAt(index);
+
+	 else
+
+		 return "";
+
+	 }
+
+	 public static void isPalindrome(String S)
+
+	 {
+
+	 if(S.equals(reverse(S,0)))
+
+	 System.out.println("Palindrome string");
+
+	 else
+
+		 System.out.println("Not Palindrome string");
+
+	 }
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+
+		 System.out.println("Enter a string: ");
+
+		 String S = sc.nextLine();
+
+		 isPalindrome(S);
+
+	}
+
+}
+
+Output:
+Enter a string: 
+racecar
+Palindrome string
+Question 7. Given an unsorted array, A, of integers and an integer k, write recursive program using Java for rearranging the elements in A so that all elements less than or equal to k come before any elements larger than k.
+import java.util.*;
+
+public class HAQ7 {
+
+	 public static int[] swap(int arr[], int start, int end, int item)
+
+	 {
+
+	 if(start>end)
+
+	 return arr;
+
+	 else if(arr[start]<=item)
+
+	 return swap(arr, ++start, end, item);
+
+	 else if(arr[end]>item)
+
+	 return swap(arr, start,--end, item);
+
+	 else
+
+	 {
+
+		 int temp = arr[start];
+
+		 arr[start] = arr[end];
+
+		 arr[end] = temp;
+
+		 return swap(arr, ++start,--end, item);
+
+	 }
+
+}
+
+ public static void display(int arr[])
+
+	 {
+
+	 for(int i = 0;i<arr.length;i++)
+
+	 {
+
+	 System.out.print(arr[i]+" ");
+
+	 }
+
+}
+
+	public static void main(String[] args) {
+
+		 int arr[]={3, 9, 4, 11, 5, 1, 7};
+
+		 arr = swap(arr,0,arr.length-1,5);
+
+		 display(arr);
+
+	}
+
+}
+
+Output:
+3 1 4 5 11 9 7
+Question 8. In the Towers of Hanoi puzzle, we are given a platform with three pegs, a, b, and c, sticking out of it. On peg a is a stack of n disks, each larger than the next so that the smallest is on the top and the largest is on the bottom. The puzzle is to move all the disks from peg a to peg c, moving one disk at a time, so that we never place a larger disk on top of a smaller one. See Figure 1 for an example of the case n = 4. Write a recursive program using Java for solving the Towers of Hanoi puzzle for arbitrary n. (Hint: Consider first the subproblem of moving all but the nth disk from peg a to another peg using the third as “temporary storage.”)
+public class HAQ8 {
+
+    public static void towerOfHanoi(int n, char fromRod, char toRod, char auxRod) {
+
+        if (n == 1) {
+
+            System.out.println("Move disk 1 from rod " + fromRod + " to rod " + toRod);
+
+            return;
+
+        }
+
+        towerOfHanoi(n - 1, fromRod, auxRod, toRod);
+
+        // Move the nth disk from 'fromRod' to 'toRod'
+
+        System.out.println("Move disk " + n + " from rod " + fromRod + " to rod " + toRod);
+
+        // Move (n-1) disks from 'auxRod' to 'toRod' using 'fromRod' as auxiliary
+
+        towerOfHanoi(n - 1, auxRod, toRod, fromRod);
+
+    }
+
+    public static void main(String[] args) {
+
+        int n = 4; // Number of disks
+
+        towerOfHanoi(n, 'A', 'C', 'B'); // 'A' is the source rod, 'C' is the target rod, 'B' is the auxiliary rod
+
+    }
+
+}
+
+Output:
+Move disk 1 from rod A to rod B
+Move disk 2 from rod A to rod C
+Move disk 1 from rod B to rod C
+Move disk 3 from rod A to rod B
+Move disk 1 from rod C to rod A
+Move disk 2 from rod C to rod B
+Move disk 1 from rod A to rod B
+Move disk 4 from rod A to rod C
+Move disk 1 from rod B to rod C
+Move disk 2 from rod B to rod A
+Move disk 1 from rod C to rod A
+Move disk 3 from rod B to rod C
+Move disk 1 from rod A to rod B
+Move disk 2 from rod A to rod C
+Move disk 1 from rod B to rod C
+
