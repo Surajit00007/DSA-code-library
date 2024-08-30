@@ -1,0 +1,451 @@
+Stack is an ordered set of elements in which insertion and deletion are from one end of the stack called the top of the stack. It is a Last In First Out structure (LIFO)
+ PART-I
+Static Implementation  (Array Implementation). 
+A stack is implemented statically by using an array of size MAX to hold stack elements and an integer top storing the position of top of the stack. The stack elements can be integers, characters, strings or user defined  data types.
+ The operations to be performed on a stack are :
+ public static int push(int S[],int top) – adding an element x to the stack S
+ public static int pop(int S[],int top) – deletes and returns the top element from the stack S
+ public static void display(int S[],int top) - display all the elements of Stack S
+ public static boolean isEmpty(int top) – check if the stack is empty
+ public static boolean isFull(int top) – check if the stack is full when top equals MAX -1
+ Write a menu-driven Java Program using class, methods and array, to construct a Stack and implement the above five operations.The template for menu driven java program to use  the above Stack and invoke the required methods to perform different operations is given below.
+import java.util.Scanner;
+ public class StackDemo1 {
+ public static int push(int S[],int top)
+ { --------
+ }
+ /* Write the code for remaining user defined methods*/
+ public static final int MAX=10;
+ public static void main(String[] args) {
+ Scanner sc=new Scanner(System.in);
+ int stack[]=new int[MAX];
+ int top=-1;
+ while(true)
+ {
+           System.out.println("***MENU***");
+           System.out.println("0: Exit");
+           System.out.println("1: Push");
+           System.out.println("2: Pop");
+           System.out.println("3: Display");
+           System.out.println("Enter your choice");
+           int choice=sc.nextInt();
+           switch(choice)
+          {
+                case 0: 
+                          System.Exit(0);
+                case 1: 
+                          top=push(stack,top);
+                          break;---------
+                          default:
+                           System.out.println("Invalid choice");
+              }
+          }
+     }
+ }
+import java.util.*;
+
+
+
+public class Stack1 {
+
+
+
+    public static final int MAX = 10;
+
+
+
+    public static int push(int S[], int top) {
+
+        Scanner sc = new Scanner(System.in);
+
+        if (isFull(top)) {
+
+            System.out.println("Stack Overflow");
+
+        } else {
+
+            System.out.println("Enter element to push:");
+
+            S[++top] = sc.nextInt();
+
+            System.out.println("Element added successfully");
+
+        }
+
+        return top;
+
+    }
+
+    public static int pop(int S[], int top) {
+
+        if (isEmpty(top)) {
+
+            System.out.println("Stack Underflow");
+
+        } else {
+
+            System.out.println("Popped element: " + S[top--]);
+
+            System.out.println("Element removed successfully");
+
+        }
+
+        return top;
+
+    }
+
+    public static void display(int S[], int top) {
+
+        if (isEmpty(top)) {
+
+            System.out.println("Stack is empty.");
+
+        } else {
+
+            System.out.println("Stack elements:");
+
+            for (int i = top; i >= 0; i--) {
+
+                System.out.println(S[i]);
+
+            }
+
+        }
+
+    }
+
+    public static boolean isEmpty(int top) {
+
+        return top == -1;
+
+    }
+
+    public static boolean isFull(int top) {
+
+        return top == MAX - 1;
+
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int stack[] = new int[MAX];
+
+        int top = -1;
+
+
+
+        while (true) {
+
+            System.out.println("***MENU***");
+
+            System.out.println("0: Exit");
+
+            System.out.println("1: Push");
+
+            System.out.println("2: Pop");
+
+            System.out.println("3: Display");
+
+            System.out.println("Enter your choice:");
+
+            int choice = sc.nextInt();
+
+            switch (choice) {
+
+                case 0:
+
+                    System.exit(0);
+
+                case 1:
+
+                    top = push(stack, top);
+
+                    break;
+
+                case 2:
+
+                    top = pop(stack, top);
+
+                    break;
+
+                case 3:
+
+                    display(stack, top);
+
+                    break;
+
+                default:
+
+                    System.out.println("Invalid choice");
+
+            }
+
+        }
+
+    }
+
+}
+
+Output:
+***MENU***
+0: Exit
+1: Push
+2: Pop
+3: Display
+Enter your choice:
+1
+Enter element to push:
+10
+Element added successfully
+***MENU***
+0: Exit
+1: Push
+2: Pop
+3: Display
+Enter your choice:
+1
+Enter element to push:
+20
+Element added successfully
+***MENU***
+0: Exit
+1: Push
+2: Pop
+3: Display
+Enter your choice:
+3
+Stack elements:
+20
+10
+***MENU***
+0: Exit
+1: Push
+2: Pop
+3: Display
+Enter your choice:
+2
+Popped element: 20
+Element removed successfully
+***MENU***
+0: Exit
+1: Push
+2: Pop
+3: Display
+Enter your choice:
+3
+Stack elements:
+10
+***MENU***
+0: Exit
+1: Push
+2: Pop
+3: Display
+Enter your choice:
+0
+
+PART-II
+ Dynamic Implementation (Linked List Implementation).
+ A stack is implemented dynamically by using a Linked list where each node in the linked list has two parts, the data element and the reference to the next element of the stack.The class defintion of Node is given below.
+ class Node
+ {
+ int info;
+ Node next;
+ }
+ The stack elements can be integers, characters, strings or user defined data types. There is no restriction on how big the stack can grow.
+ The operations to be performed on a stack are
+ public static Node push(Node top) -  Add an element x to the stack S requires creation of node containing x and putting it in front of the top node pointed by S. 
+public static Node pop(Node top)- Delete the top node from the stack S so that next element becomes the top. 
+public static void display(Node top)- Display all the elements of Stack S.
+ Write a menu driven Java Program using class, methods and list, to construct a Stack and implement the above three operations.
+ The  code template for constructing the above Stack and performing the required operation is given below.
+public class StackDemo2 {
+ public static Node push(Node top)
+ {-------
+ }
+ /* Write the code for remaining user defined methods*/
+ public static void main(String[] args) {
+ Scanner sc=new Scanner(System.in);
+ Node top;
+ top=null;
+ while(true)
+ {
+      System.out.println("****MENU****");
+      System.out.println("0:Exit");
+      System.out.println("1:Push");
+      System.out.println("2:Pop");
+      System.out.println("3:Display");
+      System.out.println("Enter your choice");
+      int choice=sc.nextInt();
+      switch(choice)
+      {
+           case 0:
+                 System.exit(0);
+           case 1:
+                 top=push(top);---------
+                 default:
+                 System.out.println("Wrong choice");
+       }
+     }
+   }
+ }
+import java.util.*;
+
+class Node {
+
+    int info;
+
+    Node next;
+
+
+
+    Node(int info) {
+
+        this.info = info;
+
+        this.next = null;
+
+    }
+
+}
+
+public class Stack2 {
+
+
+
+    public static Node top = null;
+
+
+
+    public static Node push(Node top) {
+
+        Scanner sc = new Scanner(System.in);
+
+        Node p = new Node(0);
+
+        System.out.println("Enter element to push:");
+
+        p.info = sc.nextInt();
+
+        p.next = top;
+
+        top = p;
+
+        System.out.println("Element added successfully");
+
+        return top;
+
+    }
+
+
+
+    public static Node pop(Node top) {
+
+        if (top == null) {
+
+            System.out.println("Stack Underflow. Cannot pop element.");
+
+        } else {
+
+            Node p = top;
+
+            System.out.println("Popped element: " + p.info);
+
+            top = top.next;
+
+            System.out.println("Element removed successfully");
+
+        }
+
+        return top;
+
+    }
+
+
+
+    public static void display(Node top) {
+
+        if (top == null) {
+
+            System.out.println("Empty Stack");
+
+        } else {
+
+            System.out.println("Stack elements:");
+
+            Node p = top;
+
+            while (p != null) {
+
+                System.out.println(p.info);
+
+                p = p.next;
+
+            }
+
+        }
+
+    }
+
+
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+
+
+        while (true) {
+
+            System.out.println("***MENU***");
+
+            System.out.println("0: Exit");
+
+            System.out.println("1: Push");
+
+            System.out.println("2: Pop");
+
+            System.out.println("3: Display");
+
+            System.out.println("Enter your choice:");
+
+            int choice = sc.nextInt();
+
+            switch (choice) {
+
+                case 0:
+
+                    System.exit(0);
+
+                case 1:
+
+                    top = push(top);
+
+                    break;
+
+                case 2:
+
+                    top = pop(top);
+
+                    break;
+
+                case 3:
+
+                    display(top);
+
+                    break;
+
+                default:
+
+                    System.out.println("Invalid choice");
+
+            }
+
+        }
+
+    }
+
+}
+
+Output:Khud banalo
